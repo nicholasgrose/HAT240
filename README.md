@@ -17,7 +17,7 @@ Keeps track of your test failures. In addition to keeping count and giving you t
 Infinite loops are always trouble, so there's a simple progress bar that will keep ticking so you know if it stopped.
 
 ## Simple to Change Goals
-There are two variables at the top of the script that allow you to easily change what the script does. The first sets your target score, and the second sets which files are saved in the event of a failure.
+By passing in different values for your arguments, you can change what score your tests will look for and which files are saved when a test fails your criteria.
 
 # How do I use this?
 
