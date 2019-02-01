@@ -2,28 +2,35 @@
 
 #
 # CS 240 Homework Auto-Tester
-# Version 1.2.0
+# Version 1.2.1
 # Courtesy of Nicholas Rose
 #
-# Feel free to modify and share this however you like!
-#
-# If you don't have permission to run whatever .sh file you decide
-# to put this in, run the followng command.
-#
-# chmod +x auto_run_test.sh
-#
-# For my Windows friends, the following command will fix this script
-# after you save your changes. Windows likes to use different line
-# endings, so this will change them to allow for proper compilation.
-#
-# sed -i -e 's/\r$//' auto_run_test.sh
+# $1 = Test File
+# $2 = Test Count
+# $3 = Target Score
+# $4 = Files For Saving on Failure
 #
 
-target_score=100
-files_for_saving="*Bogus* *Input* *Output* *Result*"
-
-read -e -p "Where is the test file? " homework_test_file
-read -e -p "How many times would you like to test? " test_count
+if [ -z "$1" ]; then
+    read -e -p "Where is the test file? " homework_test_file
+else
+    homework_test_file=$1
+fi
+if [ -z "$2" ]; then
+    read -e -p "How many times would you like to test? " test_count
+else
+    test_count=$2
+fi
+if [ -z "$3" ]; then
+    target_score=100
+else
+    target_score=$3
+fi
+if [ -z "$4" ]; then
+    files_for_saving="*Bogus* *Input* *Output* *Result*"
+else
+    files_for_saving=$4
+fi
 
 tests_failed=0
 minimum_score=100
