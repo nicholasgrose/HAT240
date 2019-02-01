@@ -2,7 +2,7 @@
 
 #
 # CS 240 Homework Auto-Tester
-# Version 1.1.2
+# Version 1.1.3
 # Courtesy of Nicholas Rose
 #
 
