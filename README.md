@@ -11,7 +11,7 @@ This is script is the result of a lot of frustration I encountered while testing
 You can run this from anywhere you want on whichever test file you want however many times you want.
 
 ## Logging
-Keeps track of your test failures. In addition to keeping count and giving you the final count at the end, all failures are put in a log file inside of a folder the script creates called "test_failures" and all files associated with said test failure, including the complete test log for that run, are put in their own unique file in the same directory.
+Keeps track of your test failures. In addition to keeping count and giving you the final count at the end, all failures are put in a log file inside of a folder the script creates called "test_failures" and all files associated with said test failure, including the complete test log for that run, are put in their own unique file in the same directory. Additionally, HAT240 will tell you which of your failures has the lowest score, so you can find the problem inputs immediately.
 
 ## Progress
 Infinite loops are always trouble, so there's a simple progress bar that will keep ticking so you know if it stopped.
@@ -22,11 +22,11 @@ There are two variables at the top of the script that allow you to easily change
 # Need help?
 If you don't have permission to run the .sh file, run the following command:
 
-chmod +x auto_run_test.sh
+chmod +x hat240.sh
 
 For my Windows friends, the following command will fix this script after you save your changes. Windows likes to use different line endings, so this will change them to allow for proper compilation:
 
-sed -i -e 's/\r$//' auto_run_test.sh
+sed -i -e 's/\r$//' hat240.sh
 
 # License
 
