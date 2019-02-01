@@ -22,6 +22,7 @@ By passing in different values for your arguments, you can change what score you
 # How do I use this?
 
 HAT240 was made to save time, so the usage is built around time saving as well. You can pass in arguments to run it all in one line. All arguments are optional, but if the first two are not provided, you will be prompted for them:
+
 hat240.sh hw_test_file number_of_test_to_run target_score(default=100) backup_files(default="\*Bogus\* \*Input\* \*Output\* \*Result\*")
 
 # Need help?
