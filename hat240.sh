@@ -39,6 +39,7 @@ for i in `seq 1 $test_count`; do
     fi
 done
 
+rm -f test_output.txt
 printf "\n"
 
 if [ $tests_failed = 0 ]; then
