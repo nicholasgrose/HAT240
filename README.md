@@ -8,7 +8,7 @@ Feel free to modify and share this however you like!
 This is script is the result of a lot of frustration I encountered while testing my homework for CS240. Whether it was errors or it was weird inputs, I always seemed to have *some* issue. Thus, this was born. It features quite a few nifty features for whosoever needs to run multiple tests on their homework code.
 
 ## Generalized usage
-You can run this from anywhere you want on whichever test file you want however many times you want.
+You can run this from anywhere you want on whichever test file you want however many times you want. You can use it all in one line by passing in arguments or you can use the prompts (however the prompts do not allow customization of target score or file backups).
 
 ## Logging
 Keeps track of your test failures. In addition to keeping count and giving you the final count at the end, all failures are put in a log file inside of a folder the script creates called "test_failures" and all files associated with said test failure, including the complete test log for that run, are put in their own unique file in the same directory. Additionally, HAT240 will tell you which of your failures has the lowest score, so you can find the problem inputs immediately.
@@ -18,6 +18,11 @@ Infinite loops are always trouble, so there's a simple progress bar that will ke
 
 ## Simple to Change Goals
 There are two variables at the top of the script that allow you to easily change what the script does. The first sets your target score, and the second sets which files are saved in the event of a failure.
+
+# How do I use this?
+
+HAT240 was made to save time, so the usage is built around time saving as well. You can pass in arguments to run it all in one line. All arguments are optional, but if the first two are not provided, you will be prompted for them:
+hat240.sh hw_test_file number_of_test_to_run target_score(default=100) backup_files(default="\*Bogus\* \*Input\* \*Output\* \*Result\*")
 
 # Need help?
 If you don't have permission to run the .sh file, run the following command:
