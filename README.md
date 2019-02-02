@@ -5,7 +5,7 @@ Feel free to modify and share this however you like!
 
 # What does this do?
 
-This is script is the result of a lot of frustration I encountered while testing my homework for CS240. Whether it was errors or it was weird inputs, I always seemed to have *some* issue. Thus, this was born. It features quite a few nifty features for whosoever needs to run multiple tests on their homework code.
+This script is the result of a lot of frustration I encountered while testing my homework for CS240. Whether it was errors or it was weird inputs, I always seemed to have *some* issue. Thus, this was born. It features quite a few nifty features for whosoever needs to run multiple tests on their homework code.
 
 ## Generalized usage
 You can run this from anywhere you want on whichever test file you want however many times you want. You can use it all in one line by passing in arguments or you can use the prompts (however the prompts do not allow customization of target score or file backups).
