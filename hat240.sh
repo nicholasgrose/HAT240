@@ -56,12 +56,16 @@ bar_length=${#bar}
 echo
 
 for i in `seq 1 $test_count`; do
-    # checks for 
+    # checks for directory 
     if [ ! -d "failure$tests_failed" ]; then
         mkdir "failure$tests_failed"
     fi
+
+    # move into test failed and copy test file
     cd "failure$tests_failed"
     cp ../../$homework_test_file test_file
+
+    # execute and calculate score
     $(./test_file > test_output.txt)
     score=$(cat test_output.txt | grep "total score" | grep -E -o "[0-9]+")
 
