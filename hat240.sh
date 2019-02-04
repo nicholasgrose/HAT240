@@ -2,8 +2,7 @@
 
 #
 # CS 240 Homework Auto-Tester
-# Version 1.2.1
-# Courtesy of Nicholas Rose
+# Version 1.3.0
 #
 # $1 = Test File
 # $2 = Test Count
