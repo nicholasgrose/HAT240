@@ -56,22 +56,18 @@ bar_length=${#bar}
 echo
 
 for i in `seq 1 $test_count`; do
-    # checks for directory 
-    if [ ! -d "failure$tests_failed" ]; then
-        mkdir "failure$tests_failed"
-    fi
-
+    mkdir "failure$tests_failed"
+    
     # move into test failed and copy test file
     cd "failure$tests_failed"
-    cp ../../$homework_test_file test_file
 
     # execute and calculate score
-    $(./test_file > test_output.txt)
+    $(../../$homework_test_file > ./test_output.txt)
     score=$(cat test_output.txt | grep "total score" | grep -E -o "[0-9]+")
 
     if [ $score -eq $target_score ] || [ $score -gt $target_score ]; then
         cd ..
-	rm -rf "Failure$tests_failed"
+	rm -rf "failure$tests_failed"
     else
         echo "Failure$tests_failed: $score" >> "../failures.txt"
 
@@ -81,7 +77,6 @@ for i in `seq 1 $test_count`; do
         fi
 
         tests_failed=$((tests_failed + 1))
-	rm test_file
 	cd ..
     fi
     n=$(((i)*bar_length / test_count))
@@ -94,8 +89,8 @@ echo
 echo "$tests_failed tests failed!"
 
 if [ $tests_failed = 0 ]; then
+    cd ..
     rm -rf test_failures
-    echo "Congratulations! (You can submit with 'make submit')"
 else
     echo "Lowest Score: $minimum_score in failure$minimum_score_failure"
 fi
