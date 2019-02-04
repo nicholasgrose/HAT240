@@ -56,7 +56,7 @@ echo
 
 for i in `seq 1 $test_count`; do
     mkdir "failure$tests_failed"
-    
+
     # move into test failed and copy test file
     cd "failure$tests_failed"
 
@@ -80,7 +80,7 @@ for i in `seq 1 $test_count`; do
     fi
     n=$(((i)*bar_length / test_count))
     printf "\r[%-${bar_length}s] #%d" "${bar:0:n}" $((i))
-   
+
 done
 
 echo
