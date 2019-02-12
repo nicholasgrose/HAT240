@@ -2,7 +2,7 @@
 
 #
 # CS 240 Homework Auto-Tester
-# Version 1.3.0
+# Version 1.3.1
 #
 # $1 = Test File
 # $2 = Test Count
@@ -55,6 +55,10 @@ bar_length=${#bar}
 echo
 
 for i in `seq 1 $test_count`; do
+    #displays progress bar
+    n=$(((i)*bar_length / test_count))
+    printf "\r[%-${bar_length}s] #%d" "${bar:0:n}" $((i))
+
     mkdir "failure$tests_failed"
 
     # move into test failed and copy test file
@@ -78,9 +82,6 @@ for i in `seq 1 $test_count`; do
         tests_failed=$((tests_failed + 1))
 	cd ..
     fi
-    n=$(((i)*bar_length / test_count))
-    printf "\r[%-${bar_length}s] #%d" "${bar:0:n}" $((i))
-
 done
 
 echo
