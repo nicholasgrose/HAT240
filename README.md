@@ -26,7 +26,9 @@ HAT240 was made to save time, so the usage is built around time saving as well. 
 ```hat240.sh arg1 arg2 arg3```
 
 **arg1** = hw_test_file
+
 **arg2** = number_of_tests_to_run
+
 **arg3** = target_score (default = 100)
 
 # Need help?
