@@ -23,16 +23,20 @@ By passing in different values for your arguments, you can change what score you
 
 HAT240 was made to save time, so the usage is built around time saving as well. You can pass in arguments to run it all in one line. All arguments are optional, but if the first two are not provided, you will be prompted for them:
 
-hat240.sh hw_test_file number_of_tests_to_run target_score(default=100)
+```hat240.sh arg1 arg2 arg3```
+
+**arg1** = hw_test_file
+**arg2** = number_of_tests_to_run
+**arg3** = target_score (default = 100)
 
 # Need help?
 If you don't have permission to run the .sh file, run the following command:
 
-chmod +x hat240.sh
+```chmod +x hat240.sh```
 
 For my Windows friends, the following command will fix this script after you save your changes. Windows likes to use different line endings, so this will change them to allow for proper compilation:
 
-sed -i -e 's/\r$//' hat240.sh
+```sed -i -e 's/\r$//' hat240.sh```
 
 # License
 
