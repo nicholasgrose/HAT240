@@ -98,7 +98,7 @@ for i in `seq 1 $test_count`; do
                     echo "Lowest score: $minimum_score"
                 fi
                 echo
-                echo "Testing paused! Press 'r' at any time to resume!"
+                printf "Testing paused! Press 'r' at any time to resume!"
             elif [[ "$key_press" = *"a"* ]]; then
                 echo
                 echo
