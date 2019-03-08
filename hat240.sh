@@ -2,7 +2,7 @@
 
 #
 # CS 240 Homework Auto-Tester
-# Version 1.3.1
+# Version 1.4.0
 #
 # $1 = Test File
 # $2 = Test Count
@@ -52,12 +52,79 @@ cd test_failures
 
 bar="=============================="
 bar_length=${#bar}
+
+echo
+echo "Testing Beginning..."
+echo $bar
+echo
+echo "The following commands are available:"
+echo "'a' = abort testing"
+echo "'p' = pause testing"
+echo "'c' = check failure count"
+echo
 echo
 
 for i in `seq 1 $test_count`; do
+    key_press=""
+    read -rs -d "" -t 0.0001 key_press
+
+    #removes any user input from screen for cleanliness
+    input_length=${#key_press}
+    printf "%0.s " `seq 1 $input_length`
+    printf "%0.s\b" `seq 1 $input_length`
+
+    test_aborted=0
+
+    if [[ "$key_press" = *"c"* ]]; then
+        echo
+        echo
+        echo "$tests_failed tests failed so far."
+        if [ $tests_failed -gt 0 ]; then
+            echo "Lowest score: $minimum_score"
+        fi
+        echo
+    elif [[ "$key_press" = *"p"* ]]; then
+        echo
+        echo
+        printf "Testing paused! Press 'r' at any time to resume! "
+        key_press=""
+        while [[ "$key_press" != *"r"* ]]; do
+            read -rs -n 1 key_press
+            if [[ "$key_press" = *"c"* ]]; then
+                echo
+                echo
+                echo "$tests_failed tests failed so far."
+                if [ $tests_failed -gt 0 ]; then
+                    echo "Lowest score: $minimum_score"
+                fi
+                echo
+                echo "Testing paused! Press 'r' at any time to resume!"
+            elif [[ "$key_press" = *"a"* ]]; then
+                echo
+                echo
+                printf "Testing aborted after $(($i-1)) tests!"
+                testing_aborted=1
+                break
+            fi
+        done
+        if [ $((testing_aborted)) != 1 ]; then
+            echo
+            echo
+        fi
+    elif [[ "$key_press" = *"a"* ]]; then
+        echo
+        echo
+        printf "Testing aborted after $(($i-1)) tests!"
+        testing_aborted=1
+    fi
+
+    if [ $((testing_aborted)) = 1 ]; then
+        break
+    fi
+
     #displays progress bar
     n=$(((i)*bar_length / test_count))
-    printf "\r[%-${bar_length}s] #%d" "${bar:0:n}" $((i))
+    printf "\r[%-${bar_length}s] #%d " "${bar:0:n}" $((i))
 
     mkdir "failure$tests_failed"
 
@@ -86,6 +153,7 @@ done
 
 echo
 echo
+echo
 echo "$tests_failed tests failed!"
 
 if [ $tests_failed = 0 ]; then
@@ -94,5 +162,7 @@ if [ $tests_failed = 0 ]; then
 else
     echo "Lowest Score: $minimum_score in failure$minimum_score_failure"
 fi
+
+echo
 
 exit 0
