@@ -2,7 +2,7 @@
 
 #
 # CS 240 Homework Auto-Tester
-# Version 1.4.0
+# Version 1.4.1
 #
 # $1 = Test File
 # $2 = Test Count
@@ -65,6 +65,34 @@ echo
 echo
 
 for i in `seq 1 $test_count`; do
+    #displays progress bar
+    n=$(((i)*bar_length / test_count))
+    printf "\r[%-${bar_length}s] #%d " "${bar:0:n}" $((i))
+
+    mkdir "failure$tests_failed"
+
+    # move into test failed and copy test file
+    cd "failure$tests_failed"
+
+    # execute and calculate score
+    $(../../$homework_test_file > ./test_output.txt)
+    score=$(cat test_output.txt | grep "total score" | grep -E -o "[0-9]+")
+
+    if [ $score -eq $target_score ] || [ $score -gt $target_score ]; then
+        cd ..
+	rm -rf "failure$tests_failed"
+    else
+        echo "Failure$tests_failed: $score" >> "../failures.txt"
+
+        if [ $score -lt $minimum_score ]; then
+            minimum_score=$score;
+            minimum_score_failure=$tests_failed;
+        fi
+
+        tests_failed=$((tests_failed + 1))
+	cd ..
+    fi
+
     key_press=""
     read -rs -d "" -t 0.0001 key_press
 
@@ -102,7 +130,11 @@ for i in `seq 1 $test_count`; do
             elif [[ "$key_press" = *"a"* ]]; then
                 echo
                 echo
-                printf "Testing aborted after $(($i-1)) tests!"
+                if [ $i = 1 ]; then
+                    printf "Testing aborted after $i test!"
+                else
+                    printf "Testing aborted after $i tests!"
+                fi
                 testing_aborted=1
                 break
             fi
@@ -114,47 +146,27 @@ for i in `seq 1 $test_count`; do
     elif [[ "$key_press" = *"a"* ]]; then
         echo
         echo
-        printf "Testing aborted after $(($i-1)) tests!"
+        if [ $i = 1 ]; then
+            printf "Testing aborted after $i test!"
+        else
+            printf "Testing aborted after $i tests!"
+        fi
         testing_aborted=1
     fi
 
     if [ $((testing_aborted)) = 1 ]; then
         break
     fi
-
-    #displays progress bar
-    n=$(((i)*bar_length / test_count))
-    printf "\r[%-${bar_length}s] #%d " "${bar:0:n}" $((i))
-
-    mkdir "failure$tests_failed"
-
-    # move into test failed and copy test file
-    cd "failure$tests_failed"
-
-    # execute and calculate score
-    $(../../$homework_test_file > ./test_output.txt)
-    score=$(cat test_output.txt | grep "total score" | grep -E -o "[0-9]+")
-
-    if [ $score -eq $target_score ] || [ $score -gt $target_score ]; then
-        cd ..
-	rm -rf "failure$tests_failed"
-    else
-        echo "Failure$tests_failed: $score" >> "../failures.txt"
-
-        if [ $score -lt $minimum_score ]; then
-            minimum_score=$score;
-            minimum_score_failure=$tests_failed;
-        fi
-
-        tests_failed=$((tests_failed + 1))
-	cd ..
-    fi
 done
 
 echo
 echo
 echo
-echo "$tests_failed tests failed!"
+if [ $tests_failed = 1 ]; then
+    echo "$tests_failed test failed!"
+else
+    echo "$tests_failed tests failed!"
+fi
 
 if [ $tests_failed = 0 ]; then
     cd ..
