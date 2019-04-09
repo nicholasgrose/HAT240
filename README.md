@@ -7,19 +7,19 @@ Feel free to modify and share this however you like!
 
 This script is the result of a lot of frustration I encountered while testing my homework for CS240. Whether it was errors or it was weird inputs, I always seemed to have *some* issue. Thus, this was born. It features quite a few nifty features for whosoever needs to run multiple tests on their homework code.
 
-## Generalized usage
+### Generalized usage
 You can run this from anywhere you want on whichever test file you want however many times you want. You can use it all in one line by passing in arguments or you can use the prompts (however the prompts do not allow for customization of target score).
 
-## Logging
+### Logging
 Keeps track of your test failures. In addition to keeping count and giving you the final count at the end, all failures are put in a log file inside of a folder the script creates called "test_failures" and all files associated with said test failure, including the complete test log for that run, are put in their own unique directory within the same directory. Additionally, HAT240 will tell you which of your failures has the lowest score, so you can find the problem inputs immediately.
 
-## Progress
+### Progress
 You can keep track of how close you are to completion with a progress bar that both shows overall progression and the current test being run.
 
-## Simple to Change Goals
+### Simple to Change Goals
 By passing in a different target score, you can set what you hope to achieve from any specific test batch. This allows for working on the homework on both a function by function basis and all at once.
 
-## Control
+### Control
 You may control and keep track of your testing with built in commands while your testing is being run. You can check the number of failures, abort testing, pause testing, and more!
 
 # How do I use this?
